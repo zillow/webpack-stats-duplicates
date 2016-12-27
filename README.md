@@ -1,6 +1,6 @@
 # webpack-stats-duplicates
 
-A utility for examining webpack stats.json files and looking for duplicate module imports.
+A utility for examining webpack stats.json files and looking for duplicate module imports. Inspired by [Webpack Visualizer](https://chrisbateman.github.io/webpack-visualizer/), an excellent tool for visualizing your webpack bundle.
 
 ## CLI
 
