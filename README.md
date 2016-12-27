@@ -15,6 +15,7 @@ $ npm install -g webpack-stats-duplicates
 ```
 $ webpack-stats-duplicates stats.json
 ```
+![Usage example](examples/example.png?raw=true)
 
 ## API
 
