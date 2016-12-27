@@ -1,0 +1,7 @@
+{
+    "whitelist": [
+        "./node_modules/flux/node_modules/fbjs",
+        "./node_modules/alt/node_modules/flux",
+        "./node_modules/react-router/node_modules/warning"
+    ]
+}

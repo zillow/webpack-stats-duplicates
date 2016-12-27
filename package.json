@@ -1,0 +1,16 @@
+{
+  "name": "webpack-stats-duplicates",
+  "version": "1.0.0",
+  "description": "Search your webpack bundle stats.json for duplicate modules",
+  "bin": "./cli.js",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brians@zillowgroup.com",
+  "license": "ISC"
+}
