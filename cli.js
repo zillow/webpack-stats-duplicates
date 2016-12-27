@@ -1,35 +1,46 @@
 #!/usr/bin/env node
 
+var argv = require('yargs')
+    .usage('Usage: webpack-stats-duplicates <stats.json>')
+    .demand(1, 'Please specify a <stats.json> file.')
+    .normalize()
+    .option('c', {
+        describe: 'Specify the location of the .webpack-stats-duplicates-rc file',
+        alias: 'config',
+        normalize: true
+    })
+    .option('d', {
+        describe: 'Do not use the .webpack-stats-duplicates-rc file',
+        alias: 'disable-config',
+        boolean: true
+    })
+    .option('w', {
+        describe: 'Comma separated list of whitelisted module paths',
+        alias: 'whitelist',
+        string: true
+    })
+    .help('h')
+    .alias('h', 'help')
+    .argv;
+
+var fs = require('fs');
 var findDuplicates = require('./lib/findDuplicates');
 var printDuplicates = require('./lib/printDuplicates');
-var fs = require('fs');
-var path = require('path');
-var argv = require('minimist')(process.argv.slice(2));
 var file = argv._[0];
 
-function help() {
-    console.log('Usage: webpack-stats-duplicates [stats.json]');
-}
-
-if (argv.h || argv.help || !file) {
-    help();
-    process.exit();
-}
-
+// Parse the stats.json file
 var json;
 try {
-    json = JSON.parse(fs.readFileSync(`./${file}`, 'utf8'));
+    json = JSON.parse(fs.readFileSync(file, 'utf8'));
 } catch (e) {
-    console.log(e);
     console.log(`Invalid file: ${file}\n`);
-    help();
     process.exit(1);
 }
 
 // --config option
 var config;
 if (argv.config) {
-    config = `./${argv.config}`;
+    config = argv.config;
 } else {
     var DEFAULT_CONFIG = './.webpack-stats-duplicates-rc';
     if (fs.existsSync(DEFAULT_CONFIG)) {
@@ -39,12 +50,12 @@ if (argv.config) {
 
 var options = {};
 
-// Load configuration from rc file unless --no-config
-if (config && argv.config !== false) {
+// Load configuration from rc file unless --disable-config
+if (config && !argv.disableConfig) {
     try {
         options = JSON.parse(fs.readFileSync(config, 'utf8'));
     } catch (e) {
-        console.log(`Invalid configuration file: ${path.normalize(config)}`);
+        console.log(`Invalid configuration file: ${config}`);
         process.exit(1);
     }
 }

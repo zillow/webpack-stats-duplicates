@@ -9,7 +9,7 @@
   "bin": "./cli.js",
   "dependencies": {
     "colors": "^1.1.2",
-    "minimist": "^1.2.0"
+    "yargs": "^6.5.0"
   },
   "devDependencies": {},
   "scripts": {
