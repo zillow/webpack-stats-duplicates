@@ -17,6 +17,15 @@ $ webpack-stats-duplicates stats.json
 ```
 ![Usage example](examples/example.png?raw=true)
 
+Use the `--help` flag to see all command line options.
+
+### Config file
+
+You can create a configuration file with options such as `whitelist` to be used when running.
+The utility will look for a `.webpack-stats-duplicates-rc` file in the current working directory,
+or you can specify the location of the file with `--config` on the command line.
+See [`findDuplicates`](#findduplicatesjson-options--array) for all available configuration options.
+
 ## API
 
 ### Installation
