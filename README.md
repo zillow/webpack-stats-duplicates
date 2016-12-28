@@ -55,3 +55,31 @@ const duplicates = findDuplicates(json, {
   whitelist: [ '/node_modules/flux/node_modules/fbjs' ]
 });
 ```
+
+### `printDuplicates(duplicates)`
+
+#### Arguments
+
+1. `duplicates` (`Array`): The duplicates array from [`findDuplicates`](#findduplicatesjson-options--array)
+
+### `loadConfig([filename], callback)`
+
+#### Arguments
+
+1. `filename` (`String` [optional]): The filename to load config from, if omitted, will attempt to load the default `.wsdrc` file
+2. `callback` (`Function`): Callback function that takes two arguments, `error` and `config`
+
+#### Example
+
+```
+import { loadConfig } from 'webpack-stats-duplicates';
+
+let findDuplicatesOpts = {};
+loadConfig('./path/to/my/config.json', (error, config) => {
+  if (error) {
+    console.log(error);
+    return;
+  }
+  findDuplicatesOpts = config;
+});
+```
