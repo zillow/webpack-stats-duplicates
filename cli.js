@@ -5,12 +5,12 @@ var argv = require('yargs')
     .demand(1, 'Please specify a <stats.json> file.')
     .normalize()
     .option('c', {
-        describe: 'Specify the location of the .webpack-stats-duplicates-rc file',
+        describe: 'Specify the location of the .wsdrc file',
         alias: 'config',
         normalize: true
     })
     .option('d', {
-        describe: 'Do not use the .webpack-stats-duplicates-rc file',
+        describe: 'Do not use the .wsdrc file',
         alias: 'disable-config',
         boolean: true
     })
@@ -42,7 +42,7 @@ var config;
 if (argv.config) {
     config = argv.config;
 } else {
-    var DEFAULT_CONFIG = './.webpack-stats-duplicates-rc';
+    var DEFAULT_CONFIG = './.wsdrc';
     if (fs.existsSync(DEFAULT_CONFIG)) {
         config = DEFAULT_CONFIG;
     }
