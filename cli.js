@@ -24,6 +24,7 @@ var argv = require('yargs')
     .argv;
 
 var fs = require('fs');
+var loadConfig = require('./lib/loadConfig');
 var findDuplicates = require('./lib/findDuplicates');
 var printDuplicates = require('./lib/printDuplicates');
 var file = argv._[0];
@@ -37,27 +38,18 @@ try {
     process.exit(1);
 }
 
-// --config option
-var config;
-if (argv.config) {
-    config = argv.config;
-} else {
-    var DEFAULT_CONFIG = './.wsdrc';
-    if (fs.existsSync(DEFAULT_CONFIG)) {
-        config = DEFAULT_CONFIG;
-    }
-}
-
 var options = {};
 
-// Load configuration from rc file unless --disable-config
-if (config && !argv.disableConfig) {
-    try {
-        options = JSON.parse(fs.readFileSync(config, 'utf8'));
-    } catch (e) {
-        console.log(`Invalid configuration file: ${config}`);
-        process.exit(1);
-    }
+// --disable-config option
+if (!argv.disableConfig) {
+    // --config option
+    loadConfig(argv.config, function (err, opts) {
+        if (err) {
+            console.log(err);
+            process.exit(1);
+        }
+        options = opts;
+    });
 }
 
 // --whitelist option
