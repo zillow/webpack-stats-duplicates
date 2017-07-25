@@ -1,6 +1,6 @@
 {
   "name": "webpack-stats-duplicates",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Search your webpack bundle stats.json for duplicate modules",
   "repository": {
     "type": "git",
