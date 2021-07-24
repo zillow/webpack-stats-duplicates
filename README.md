@@ -34,6 +34,14 @@ See [`findDuplicates`](#findduplicatesjson-options--array) for all available con
 $ npm install --save webpack-stats-duplicates
 ```
 
+### Output
+
+--json flag will generate `filename.json`
+
+```
+npx webpack-stats-duplicates --json <filename.json> .\stats.json
+```
+
 ### `findDuplicates(json[, options]) => Array`
 
 #### Arguments

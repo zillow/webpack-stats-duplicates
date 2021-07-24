@@ -1,5 +1,6 @@
 module.exports = {
     loadConfig: require('./lib/loadConfig'),
     findDuplicates: require('./lib/findDuplicates'),
-    printDuplicates: require('./lib/printDuplicates')
+    printDuplicates: require('./lib/printDuplicates'),
+    printJson: require('./lib/printDuplicatesToJson')
 };
