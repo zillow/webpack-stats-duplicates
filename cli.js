@@ -65,7 +65,8 @@ if (argv.whitelist) {
 
 var duplicates = findDuplicates(json, options);
 
-if(argv.json) {
+var jsonArgHasBeenPassed = argv.json === ''; 
+if(jsonArgHasBeenPassed) {
     printDuplicatesToJson(duplicates, argv.json === '' ? 'blanky.json' : argv.json);
 } else {
     printDuplicates(duplicates);
