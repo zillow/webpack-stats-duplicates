@@ -19,6 +19,11 @@ var argv = require('yargs')
         alias: 'whitelist',
         string: true
     })
+    .option('j', {
+        describe: 'Outputs a json format',
+        alias: 'json',
+        string: true
+    })
     .help('h')
     .alias('h', 'help')
     .argv;
@@ -27,6 +32,7 @@ var fs = require('fs');
 var loadConfig = require('./lib/loadConfig');
 var findDuplicates = require('./lib/findDuplicates');
 var printDuplicates = require('./lib/printDuplicates');
+var printDuplicatesToJson = require('./lib/printDuplicatesToJson');
 var file = argv._[0];
 
 // Parse the stats.json file
@@ -58,7 +64,14 @@ if (argv.whitelist) {
 }
 
 var duplicates = findDuplicates(json, options);
-printDuplicates(duplicates);
+
+var jsonArgHasBeenPassed = argv.json === ''; 
+if(jsonArgHasBeenPassed) {
+    printDuplicatesToJson(duplicates, 'blanky.json');
+} else {
+    printDuplicates(duplicates);
+}
+
 
 // Error code (1) if there are any duplicate results
 process.exit(Math.min(duplicates.length, 1));
